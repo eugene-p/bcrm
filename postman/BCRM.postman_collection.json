@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "dc15c6fe-a87d-4ebe-8ae5-0dab6ba5dfee",
+		"name": "BCRM",
+		"description": "BCRM postman collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/entity-type",
+			"item": [
+				{
+					"name": "LIST",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types/a",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types",
+								"a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types/a",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types",
+								"a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test\",\n    \"schema\": {}\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"oh boy\",\n    \"schema\": {}\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types/db5e8763-5568-4c02-9245-4e79a68e8127",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types",
+								"db5e8763-5568-4c02-9245-4e79a68e8127"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types/db5e8763-5568-4c02-9245-4e79a68e8127",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types",
+								"db5e8763-5568-4c02-9245-4e79a68e8127"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

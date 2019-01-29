@@ -28,5 +28,6 @@ Run the application
 flask run
 ```
 
-open the following url http://127.0.0.1:5000
+import [postman collection](postman/BCRM.postman_collection.json)  [postman environment](postman/BCRM.postman_environment.json)
 
+or start building an application: [swagger](docs\BCRM.swagger.yml)

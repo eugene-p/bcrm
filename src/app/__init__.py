@@ -1,6 +1,5 @@
 from flask import Flask
-app = Flask(__name__)
+from app.core import core_api
 
-@app.route("/")
-def hello():
-    return "Hello World!"
+app = Flask(__name__)
+app.register_blueprint(core_api)

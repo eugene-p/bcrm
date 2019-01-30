@@ -4,7 +4,7 @@
 
 Open Source Business CRM Solution
 
-# developement
+## developement
 
 Create a virtual environment
 
@@ -14,7 +14,7 @@ mkvirtualenv bcrm
 
 Install the dependencies
 
-```
+```bash
 cd src
 pip install -r requirements.txt
 ```
@@ -33,4 +33,4 @@ flask run
 
 import [postman collection](postman/BCRM.postman_collection.json)  [postman environment](postman/BCRM.postman_environment.json)
 
-or start building an application: [swagger](docs\BCRM.swagger.yml)
+or start building an application: [swagger](docs/BCRM.swagger.yml)

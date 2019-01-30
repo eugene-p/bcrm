@@ -50,7 +50,7 @@ def create_entity_type():
     }
     entity_types.append(entity_type)
     return jsonify(entity_type), 201
-    
+
 @core_api.route('/entity-types/<string:entity_type_id>', methods=['PUT'])
 def update_entity_type(entity_type_id):
     entity_type = get_by_id(entity_type_id)

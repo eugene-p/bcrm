@@ -4,7 +4,7 @@
 
 Open Source Business CRM Solution
 
-# developement
+## developement
 
 Create a virtual environment
 
@@ -14,7 +14,7 @@ mkvirtualenv bcrm
 
 Install the dependencies
 
-```
+```bash
 cd src
 pip install -r requirements.txt
 ```

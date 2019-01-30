@@ -1,0 +1,173 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: BCRM api
+  license:
+    name: MIT
+servers:
+  - url: 'http://127.0.0.1/api'
+paths:
+  '/entity-types':
+    get:
+      summary: List all entity types
+      operationId: listEntityTypes
+      tags:
+        - core
+      responses:
+        '200':
+          description: A list of entity types
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityTypeList'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create an entity type
+      operationId: createEntityType
+      tags:
+        - core
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityTypePost'
+      responses:
+        '201':
+          description: An entity type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityType'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/entity-types/{entity-type-id}':
+    get:
+      summary: Get entity type by id
+      operationId: getEntityTypeById
+      tags:
+        - core
+      parameters:
+        - name: entity-type-id
+          in: path
+          required: true
+          description: The id of entityType to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityType'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      summary: Update an entity type
+      operationId: updateEntityType
+      tags:
+        - core
+      parameters:
+        - name: entity-type-id
+          in: path
+          required: true
+          description: The id of entityType to retrieve
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityTypePost'
+      responses:
+        '200':
+          description: Entity type updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityType'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: Delete entity type by id
+      operationId: deleteEntityTypeById
+      tags:
+        - core
+      parameters:
+        - name: entity-type-id
+          in: path
+          required: true
+          description: The id of entityType to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Acknowledgement'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Acknowledgement:
+      required:
+        - acknowledge
+      properties:
+        acknowledge:
+          type: boolean
+    EntityTypePost:
+      required:
+        - id
+        - name
+      properties:
+        name:
+          type: string
+        schema:
+          type: object
+    EntityType:
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        schema:
+          type: object
+    EntityTypeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/EntityType'
+    Error:
+      required:
+        - message
+      properties:
+        message:
+          type: string

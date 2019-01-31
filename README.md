@@ -1,4 +1,7 @@
 # bcrm
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/20080db98c8b42fdb0db9b4718dd20d4)](https://app.codacy.com/app/cedar-technologies/bcrm?utm_source=github.com&utm_medium=referral&utm_content=skalpel-tech/bcrm&utm_campaign=Badge_Grade_Dashboard)
+
 Open Source Business CRM Solution
 
 # developement

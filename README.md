@@ -34,3 +34,25 @@ flask run
 import [postman collection](postman/BCRM.postman_collection.json)  [postman environment](postman/BCRM.postman_environment.json)
 
 or start building an application: [swagger](docs\BCRM.swagger.yml)
+
+## Tests
+
+Install tests dependencies
+
+```bash
+pip install -r tests/requirements.txt
+```
+
+Run the tests
+
+```bash
+pytest
+```
+
+Run with coverage report::
+
+```
+coverage run -m pytest
+coverage report
+coverage html  # open htmlcov/index.html in a browser
+```

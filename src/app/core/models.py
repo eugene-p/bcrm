@@ -3,6 +3,8 @@
 # vim: set fileencoding=utf-8 :
 
 import datetime
+import uuid
+import json
 from app.core.db import db
 
 entity_post_schema = {
@@ -41,4 +43,11 @@ class EntityType(db.Model):
     def __init__(self, **kwargs):
         self.id = uuid.uuid4().__str__()
         self.name = kwargs.get('name')
-        self.schema = kwargs.get('schema')
+        self.schema = json.dumps(kwargs.get('schema'))
+
+    def toDict(self):
+        data = dict([])
+        data['id'] = self.id
+        data['name'] = self.name
+        data['schema'] = json.loads(self.schema)
+        return data

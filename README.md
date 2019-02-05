@@ -6,6 +6,8 @@ Open Source Business CRM Solution
 
 ## docker
 
+Create a `.env` file by copying `.env.template` to the root folder.
+
 Run the application in docker
 
 ```bash

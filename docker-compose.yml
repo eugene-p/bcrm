@@ -1,14 +1,53 @@
 version: '3'
 services:
+  postgres:
+    restart: always
+    image: postgres:11
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - bcrm-app-db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - bcrm-net
+  bcrm-migrate:
+    image: bcrm-migrate
+    build:
+      context: src
+      dockerfile: Dockerfile.Migrate
+    environment:
+      - SQLALCHEMY_DATABASE_URI=postgresql://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_NAME}
+    networks:
+      - bcrm-net
+    depends_on:
+      - postgres
   bcrm:
+    restart: always
     image: bcrm-flask
     build:
       context: src
+    environment:
+      - SQLALCHEMY_DATABASE_URI=postgresql://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_NAME}
+    networks:
+      - bcrm-net
+    depends_on:
+      - bcrm-migrate
   nginx:
+    restart: always
     image: bcrm-nginx
     build:
       context: nginx
     ports:
       - 5000:80
+    networks:
+      - bcrm-net
     depends_on:
       - bcrm
+volumes:
+  bcrm-app-db:
+networks:
+  bcrm-net:
+    driver: bridge

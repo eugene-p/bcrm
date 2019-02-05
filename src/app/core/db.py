@@ -10,7 +10,7 @@ db = SQLAlchemy(session_options={'autocommit': True})
 def init_db(app):
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('') \
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI') \
         or 'sqlite:///bcrm.db' # Creates bcrm.db inside of app folder
 
     db.init_app(app)

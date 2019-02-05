@@ -33,6 +33,13 @@ Set the flask app root
 FLASK_APP=app
 ```
 
+Initialize database
+
+```bash
+flask init-db
+```
+
+
 Run the application
 
 ```bash

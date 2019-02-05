@@ -1,7 +1,7 @@
 from flask import Flask
-from app.core import core_api
+from app.core import init_core
 
 def create_app():
     app = Flask(__name__)
-    app.register_blueprint(core_api)
+    init_core(app)
     return app

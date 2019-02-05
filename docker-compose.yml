@@ -1,0 +1,14 @@
+version: '3'
+services:
+  bcrm:
+    image: bcrm-flask
+    build:
+      context: src
+  nginx:
+    image: bcrm-nginx
+    build:
+      context: nginx
+    ports:
+      - 5000:80
+    depends_on:
+      - bcrm

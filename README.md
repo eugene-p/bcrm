@@ -4,7 +4,15 @@
 
 Open Source Business CRM Solution
 
-# developement
+## docker
+
+Run the application in docker
+
+```bash
+docker-compose up --build
+```
+
+## developement
 
 Create a virtual environment
 
@@ -14,7 +22,7 @@ mkvirtualenv bcrm
 
 Install the dependencies
 
-```
+```bash
 cd src
 pip install -r requirements.txt
 ```

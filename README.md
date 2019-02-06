@@ -14,6 +14,15 @@ Run the application in docker
 docker-compose up --build
 ```
 
+## Project Structure
+
+Folders
+
+Files
+
+* `.bandit` - [Bandit](https://bandit.readthedocs.io/en/latest/) security checks configuration
+
+
 ## developement
 
 Create a virtual environment

@@ -32,6 +32,7 @@ def create_entity_type():
     try:
         db.session.commit()
     except IntegrityError:
+        db.session.rollback()
         return make_response(
             jsonify({'message': "Entity Type '{}' is not unique".format(entity_type.name)}),
             404

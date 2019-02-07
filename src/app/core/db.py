@@ -6,6 +6,8 @@ import os
 import click
 from flask_sqlalchemy import SQLAlchemy
 from flask.cli import with_appcontext
+from flask_migrate import Migrate
+
 db = SQLAlchemy(session_options={'autocommit': True})
 def init_db(app):
 
@@ -14,7 +16,9 @@ def init_db(app):
         or 'sqlite:///bcrm.db' # Creates bcrm.db inside of app folder
 
     db.init_app(app)
+    migrate = Migrate(app, db)
     app.cli.add_command(init_db_command)
+    
 
 def create_db():
     db.create_all()

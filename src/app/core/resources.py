@@ -4,9 +4,10 @@ from flask import Blueprint, jsonify, request, make_response
 from jsonschema import validate, ValidationError
 from sqlalchemy.exc import IntegrityError
 from app.decorators.rest import validate_payload_is_json, validate_payload_with_schema
-from app.core.models import EntityType, Entity, entity_type_schema, entity_schema
-from app.core.db import db
+from app.core.models.entity import Entity, entity_schema
+from app.core.models.entity_type import EntityType, entity_type_schema
 
+from app.core.db import db
 
 core_api = Blueprint('core_api', __name__, url_prefix='/api')
 @core_api.route('/entity-types/<string:entity_type_id>', methods=['GET'])

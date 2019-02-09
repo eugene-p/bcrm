@@ -7,7 +7,7 @@ import uuid
 import json
 from app.core.db import db
 
-entity_post_schema = {
+entity_type_schema = {
     "type": "object",
     "properties": {
         "name": {"type": "string"},

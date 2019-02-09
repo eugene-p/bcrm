@@ -1,593 +1,874 @@
 {
 	"info": {
-		"_postman_id": "47d6c7fa-b5b8-4490-86b5-9cd2a42561c5",
-		"name": "skpcrm",
+		"_postman_id": "83ab3c45-0970-4263-9512-8b4863514da0",
+		"name": "bcrm",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Create entity type FAIL No schema",
-			"event": [
+			"name": "entity_type",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"id": "709d6df3-66fa-49e8-8a96-0cd1e0a5d21d",
-						"exec": [
-							"pm.test(\"Status code is 400\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"company\"\n\t\n}"
-				},
-				"url": {
-					"raw": "127.0.0.1:5000/api/entity-types",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+					"name": "Create entity type FAIL No schema",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "709d6df3-66fa-49e8-8a96-0cd1e0a5d21d",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"port": "5000",
-					"path": [
-						"api",
-						"entity-types"
-					]
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"company\"\n\t\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create entity type FAIL No name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "709d6df3-66fa-49e8-8a96-0cd1e0a5d21d",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"schema\": \"company\"\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create entity type FAIL Not json",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "709d6df3-66fa-49e8-8a96-0cd1e0a5d21d",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/plain",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"schema\": \"{}\",\n\t\"name\": \"company\"\n\t\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create entity type SUCCESS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "709d6df3-66fa-49e8-8a96-0cd1e0a5d21d",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).not.eql(null);",
+									"    pm.environment.set(\"entity_type_id\", jsonData.id)",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8bc5f61d-086b-41fb-bec3-139c7316fbd0",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"schema\": {},\n\t\"name\": \"company\"\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create entity type FAIL Duplicate name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "709d6df3-66fa-49e8-8a96-0cd1e0a5d21d",
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {",
+									"    pm.response.to.have.status(409);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"schema\": {},\n\t\"name\": \"company\"\n\t\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get entity type by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d4910698-ea0c-4af2-a80b-e5291209628a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types/{{entity_type_id}}",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types",
+								"{{entity_type_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get entity type by id Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d4910698-ea0c-4af2-a80b-e5291209628a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Your id is the same\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).eql(pm.environment.get(\"entity_type_id\"));",
+									"});",
+									"",
+									"pm.test(\"Name Changed\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).eql(\"company 2\");",
+									"});",
+									"",
+									"pm.test(\"Schema Changed\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.schema.a).eql(\"b\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"schema\": {\n\t\t\"a\":\"b\"\n\t},\n\t\"name\": \"company 2\"\n\t\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types/{{entity_type_id}}",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types",
+								"{{entity_type_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Updating an non existant entity type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d4910698-ea0c-4af2-a80b-e5291209628a",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"schema\": {\n\t\t\"a\":\"b\"\n\t},\n\t\"name\": \"company 2\"\n\t\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types/nope",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types",
+								"nope"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check database updated",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d4910698-ea0c-4af2-a80b-e5291209628a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Your id is the same\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).eql(pm.environment.get(\"entity_type_id\"));",
+									"});",
+									"",
+									"pm.test(\"Name Changed\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).eql(\"company 2\");",
+									"});",
+									"",
+									"pm.test(\"Schema Changed\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.schema.a).eql(\"b\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types/{{entity_type_id}}",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types",
+								"{{entity_type_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete entity type by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "297f9520-4652-4853-b9a6-6c4a51d91a57",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types/{{entity_type_id}}",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types",
+								"{{entity_type_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete entity type by id FAIL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "297f9520-4652-4853-b9a6-6c4a51d91a57",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types/{{entity_type_id}}",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types",
+								"{{entity_type_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get entity type by id FAIL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d4910698-ea0c-4af2-a80b-e5291209628a",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types/{{entity_type_id}}",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types",
+								"{{entity_type_id}}"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Create entity type FAIL No name",
-			"event": [
+			"name": "entity",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"id": "709d6df3-66fa-49e8-8a96-0cd1e0a5d21d",
-						"exec": [
-							"pm.test(\"Status code is 400\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"schema\": \"company\"\n}"
-				},
-				"url": {
-					"raw": "127.0.0.1:5000/api/entity-types",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+					"name": "Create entity FAIL, when type does not exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "709d6df3-66fa-49e8-8a96-0cd1e0a5d21d",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"port": "5000",
-					"path": [
-						"api",
-						"entity-types"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create entity type FAIL Not json",
-			"event": [
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"content\": {},\n\t\"entity_type_id\": \"not-in-db\"\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entities",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entities"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"id": "709d6df3-66fa-49e8-8a96-0cd1e0a5d21d",
-						"exec": [
-							"pm.test(\"Status code is 400\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "text/plain",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"schema\": \"{}\",\n\t\"name\": \"company\"\n\t\n}"
-				},
-				"url": {
-					"raw": "127.0.0.1:5000/api/entity-types",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+					"name": "Create entity FAIL no type provided",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "709d6df3-66fa-49e8-8a96-0cd1e0a5d21d",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"port": "5000",
-					"path": [
-						"api",
-						"entity-types"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create entity type SUCCESS",
-			"event": [
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"content\": {}\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entities",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entities"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"id": "709d6df3-66fa-49e8-8a96-0cd1e0a5d21d",
-						"exec": [
-							"pm.test(\"Status code is 201\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"Your test name\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.id).not.eql(null);",
-							"    pm.environment.set(\"entity_type_id\", jsonData.id)",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"schema\": {},\n\t\"name\": \"company\"\n\t\n}"
-				},
-				"url": {
-					"raw": "localhost:5000/api/entity-types",
-					"host": [
-						"localhost"
+					"name": "Create entity FAIL no content provided",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "709d6df3-66fa-49e8-8a96-0cd1e0a5d21d",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"port": "5000",
-					"path": [
-						"api",
-						"entity-types"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create entity type SUCCESS FAIL Duplicate name",
-			"event": [
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"entity_type_id\": \"aaaaaaa_bbbbb\"\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entities",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entities"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"id": "709d6df3-66fa-49e8-8a96-0cd1e0a5d21d",
-						"exec": [
-							"pm.test(\"Status code is 400\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"schema\": \"{}\",\n\t\"name\": \"company\"\n\t\n}"
-				},
-				"url": {
-					"raw": "127.0.0.1:5000/api/entity-types",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+					"name": "Create entity type - bootstrap",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "709d6df3-66fa-49e8-8a96-0cd1e0a5d21d",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).not.eql(null);",
+									"    pm.environment.set(\"entity_type_id\", jsonData.id)",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"port": "5000",
-					"path": [
-						"api",
-						"entity-types"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get entity type by id",
-			"event": [
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"company\",\n\t\"schema\": {}\n\t\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"id": "d4910698-ea0c-4af2-a80b-e5291209628a",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "127.0.0.1:5000/api/entity-types/{{entity_type_id}}",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+					"name": "Create entity SUCCESS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "709d6df3-66fa-49e8-8a96-0cd1e0a5d21d",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).not.eql(null);",
+									"    pm.environment.set(\"entity_id\", jsonData.id)",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"port": "5000",
-					"path": [
-						"api",
-						"entity-types",
-						"{{entity_type_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get entity type by id Copy",
-			"event": [
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"entity_type_id\": \"{{entity_type_id}}\",\n\t\"content\": {}\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entities",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entities"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"id": "d4910698-ea0c-4af2-a80b-e5291209628a",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Your id is the same\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.id).eql(pm.environment.get(\"entity_type_id\"));",
-							"});",
-							"",
-							"pm.test(\"Name Changed\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.name).eql(\"company 2\");",
-							"});",
-							"",
-							"pm.test(\"Schema Changed\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.schema.a).eql(\"b\");",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"schema\": {\n\t\t\"a\":\"b\"\n\t},\n\t\"name\": \"company 2\"\n\t\n}"
-				},
-				"url": {
-					"raw": "127.0.0.1:5000/api/entity-types/{{entity_type_id}}",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+					"name": "Delete entity  by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "297f9520-4652-4853-b9a6-6c4a51d91a57",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"port": "5000",
-					"path": [
-						"api",
-						"entity-types",
-						"{{entity_type_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Updating an non existant entity type",
-			"event": [
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entities/{{entity_id}}",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entities",
+								"{{entity_id}}"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"id": "d4910698-ea0c-4af2-a80b-e5291209628a",
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {",
-							"    pm.response.to.have.status(404);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"schema\": {\n\t\t\"a\":\"b\"\n\t},\n\t\"name\": \"company 2\"\n\t\n}"
-				},
-				"url": {
-					"raw": "127.0.0.1:5000/api/entity-types/nope",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+					"name": "Delete entity type by id - cleanup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "297f9520-4652-4853-b9a6-6c4a51d91a57",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"port": "5000",
-					"path": [
-						"api",
-						"entity-types",
-						"nope"
-					]
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/api/entity-types/{{entity_type_id}}",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"entity-types",
+								"{{entity_type_id}}"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Check database updated",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "d4910698-ea0c-4af2-a80b-e5291209628a",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Your id is the same\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.id).eql(pm.environment.get(\"entity_type_id\"));",
-							"});",
-							"",
-							"pm.test(\"Name Changed\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.name).eql(\"company 2\");",
-							"});",
-							"",
-							"pm.test(\"Schema Changed\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.schema.a).eql(\"b\");",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "127.0.0.1:5000/api/entity-types/{{entity_type_id}}",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"entity-types",
-						"{{entity_type_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete entity type by id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "297f9520-4652-4853-b9a6-6c4a51d91a57",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "127.0.0.1:5000/api/entity-types/{{entity_type_id}}",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"entity-types",
-						"{{entity_type_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete entity type by id FAIL",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "297f9520-4652-4853-b9a6-6c4a51d91a57",
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {",
-							"    pm.response.to.have.status(404);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "127.0.0.1:5000/api/entity-types/{{entity_type_id}}",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"entity-types",
-						"{{entity_type_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get entity type by id FAIL",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "d4910698-ea0c-4af2-a80b-e5291209628a",
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {",
-							"    pm.response.to.have.status(404);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "127.0.0.1:5000/api/entity-types/{{entity_type_id}}",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"entity-types",
-						"{{entity_type_id}}"
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	]
 }

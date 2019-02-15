@@ -17,7 +17,7 @@ services:
     image: bcrm-migrate
     build:
       context: src
-      dockerfile: Dockerfile.Migrate
+    command: ["flask", "db", "upgrade"]
     environment:
       - SQLALCHEMY_DATABASE_URI=postgresql://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_NAME}
     networks:

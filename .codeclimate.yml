@@ -1,3 +1,7 @@
 exclude_patterns:
+<<<<<<< HEAD
   - "**/migrations/**"
   - "**/tests/**"
+=======
+  - "**/migrations/**"
+>>>>>>> add code climate cocnfig
